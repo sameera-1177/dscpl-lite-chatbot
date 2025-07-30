@@ -13,13 +13,17 @@ mood = st.selectbox("How are you feeling today?", ["Select", "Anxious", "Gratefu
 user_input = st.text_input("Ask me anything spiritual, or share how you feel:")
 
 # OpenRouter API
-api_key = "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"
+import streamlit as st
+
+api_key = st.secrets["OPENROUTER_API_KEY"]
+
 def get_response(prompt):
     headers = {
     "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json",
     "HTTP-Referer": "https://sameera-1177.streamlit.app",  
-    "Content-Type": "application/json"
 }
+
     json_data = {
         "model": "mistralai/mistral-7b-instruct",  # You can try "openai/gpt-3.5-turbo" if this fails
         "messages": [{"role": "user", "content": prompt}],

@@ -13,7 +13,7 @@ mood = st.selectbox("How are you feeling today?", ["Select", "Anxious", "Gratefu
 user_input = st.text_input("Ask me anything spiritual, or share how you feel:")
 
 # OpenRouter API
-api_key = "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"
+api_key = "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"
 
 def get_response(prompt):
     headers = {

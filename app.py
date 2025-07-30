@@ -14,13 +14,12 @@ user_input = st.text_input("Ask me anything spiritual, or share how you feel:")
 
 # OpenRouter API
 api_key = "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"
-
 def get_response(prompt):
     headers = {
-        "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "https://your-username.streamlit.app",  # replace with actual username URL if needed
-        "Content-Type": "application/json"
-    }
+    "Authorization": f"Bearer {api_key}",
+    "HTTP-Referer": "https://sameera-1177.streamlit.app",  
+    "Content-Type": "application/json"
+}
     json_data = {
         "model": "mistralai/mistral-7b-instruct",  # You can try "openai/gpt-3.5-turbo" if this fails
         "messages": [{"role": "user", "content": prompt}],

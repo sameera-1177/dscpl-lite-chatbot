@@ -13,12 +13,12 @@ mood = st.selectbox("How are you feeling today?", ["Select", "Anxious", "Gratefu
 user_input = st.text_input("Ask me anything spiritual, or share how you feel:")
 
 # OpenRouter API
-api_key = "PASTE-YOUR-OPENROUTER-API-KEY-HERE"
+api_key = "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"
 
 def get_response(prompt):
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "https://your-username.streamlit.app",  # optional, replace later
+        "HTTP-Referer": "https://sameera-1177.streamlit.app", 
         "Content-Type": "application/json"
     }
     json_data = {

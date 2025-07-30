@@ -18,15 +18,29 @@ api_key = "sk-or-v1-c397d20e7f4be291c7bdc294233cb5d9de676c3cbf8731961d884f9d5710
 def get_response(prompt):
     headers = {
         "Authorization": f"Bearer {api_key}",
-        "HTTP-Referer": "https://sameera-1177.streamlit.app", 
+        "HTTP-Referer": "https://your-username.streamlit.app",  # replace with actual username URL if needed
         "Content-Type": "application/json"
     }
     json_data = {
-        "model": "mistralai/mistral-7b-instruct",
+        "model": "mistralai/mistral-7b-instruct",  # You can try "openai/gpt-3.5-turbo" if this fails
         "messages": [{"role": "user", "content": prompt}],
     }
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=json_data)
-    return response.json()["choices"][0]["message"]["content"]
+    
+    try:
+        response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=json_data)
+        data = response.json()
+        
+        # Check if response contains choices
+        if "choices" in data:
+            return data["choices"][0]["message"]["content"]
+        else:
+            st.error("⚠️ OpenRouter error: " + data.get("error", {}).get("message", "No valid response"))
+            return "🙏 Sorry, I couldn't reach the spiritual realm. Try again!"
+    
+    except Exception as e:
+        st.error(f"❌ Unexpected error: {e}")
+        return "🛑 Something went wrong. Please check your API key or prompt."
+
 
 if st.button("Speak to DSCPL"):
     if mood != "Select":
